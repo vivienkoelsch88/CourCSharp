@@ -1,0 +1,13 @@
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\ConsoleApp2.exe
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\ConsoleApp2.pdb
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\ConsoleApp2.exe.config
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
