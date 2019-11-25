@@ -9,7 +9,7 @@ namespace ConsoleApp2
 
         public ProgramUtilisation()
         {
-            this.utilApi = new UtilApi();
+            this.utilApi = new UtilApi("5.727718", "45.185603");
         }
 
         public void afficheLigne()

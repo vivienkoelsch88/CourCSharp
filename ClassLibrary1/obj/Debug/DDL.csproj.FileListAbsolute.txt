@@ -6,3 +6,4 @@ C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ClassLibrary1\bin\Debug\Newtons
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ClassLibrary1\obj\Debug\DDL.csproj.CopyComplete
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ClassLibrary1\obj\Debug\ClassLibrary1.dll
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\ClassLibrary1\obj\Debug\DDL.csprojAssemblyReference.cache

@@ -11,7 +11,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestGetListLigne()
         {
-            UtilApi prog = new UtilApi(new FakeAppelsApi());
+            UtilApi prog = new UtilApi(new FakeAppelsApi(), "5.727718", "45.185603");
             Dictionary<string, List<ArrayJson>> ATeste = prog.getListLigne(500);
             ArrayJson pourTest = new ArrayJson();
             pourTest.id = "SEM:1986";
@@ -34,7 +34,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestGetLigneInfos()
         {
-            UtilApi prog = new UtilApi(new FakeAppelsApi2());
+            UtilApi prog = new UtilApi(new FakeAppelsApi2(), "5.727718", "45.185603");
             String ATeste = prog.getLigneInfos("10");
             InfoArret pourTest = new InfoArret();
             pourTest.id = "C38:6020";

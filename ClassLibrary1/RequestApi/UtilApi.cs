@@ -8,27 +8,41 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ConsoleApp2
 {
-    public class UtilApi 
+    public class UtilApi : INotifyPropertyChanged
     {
         private IAppelsApi appelsApi;
+        private String x;
+        private String y;
 
-        public UtilApi()
-            : this(new AppelsApi())
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public UtilApi(String x, String y)
+            : this(new AppelsApi(), x, y)
         {
 
         }
 
-        internal UtilApi(IAppelsApi api)
+        internal UtilApi(IAppelsApi api, String x, String y)
         {
             this.appelsApi = api;
+            this.x = x;
+            this.y = y;
+        }
+
+        public UtilApi()
+            : this(new AppelsApi(), "5.727718", "45.185603")
+        {
+
         }
 
         public Dictionary<string, List<ArrayJson>> getListLigne(int rayon)
         {
-            List<ArrayJson> liste = JsonConvert.DeserializeObject<List<ArrayJson>>(this.appelsApi.getRequest("http://data.metromobilite.fr/api/linesNear/json?x=5.727718&y=45.185603&dist=" + rayon + "&details=true"));
+            List<ArrayJson> liste = JsonConvert.DeserializeObject<List<ArrayJson>>(this.appelsApi.getRequest("http://data.metromobilite.fr/api/linesNear/json?x=" + x + "&y=" + y + "&dist=" + rayon + "&details=true"));
 
             Dictionary<string, List<ArrayJson>> listedef = new Dictionary<string, List<ArrayJson>>();
 
@@ -61,6 +75,18 @@ namespace ConsoleApp2
             return affiche;
         }
 
-        
+        public bool SetProperty(ref List<ArrayJson> arrets, List<ArrayJson> value, [CallerMemberName] String propertyName = null)
+        {
+            if (object.Equals(arrets, value)) return false;
+            arrets = value;
+            this.OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }
