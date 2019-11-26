@@ -9,36 +9,73 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="261*"/>
+            <RowDefinition Height="158*"/>
+        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="60*"/>
             <ColumnDefinition Width="19*"/>
             <ColumnDefinition Width="522*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Grid.Row="0" Height="35" Padding="5" Background="#4E87D4" Grid.ColumnSpan="5" Margin="-10,129,0,255">
-
-        </Border>
-        <Button x:Name="btn1" Grid.Column="4" Margin="0,187,31,207" Width="125" Height="25" HorizontalAlignment="Right" Click="Btn1_Click_1">Valider</Button>
+        <Border Grid.Column="0" Grid.Row="0" Padding="5" Background="#4E87D4" Grid.ColumnSpan="5" Margin="-10,129,0,97"/>
+        <Button x:Name="btn1" Grid.Column="4" Margin="0,42,39,91" Width="125" HorizontalAlignment="Right" Click="Btn1_Click_1" Grid.Row="1">Valider</Button>
         <TextBlock HorizontalAlignment="Left" Margin="0,31,0,0" TextWrapping="Wrap" Text="Liste des Arrêt de Tram" VerticalAlignment="Top" Height="71" Width="213" Grid.Column="4"/>
-        <TextBlock HorizontalAlignment="Left" Margin="58.571,139,0,0" TextWrapping="Wrap" Text="Longitude" VerticalAlignment="Top" Height="25" Width="69" Grid.ColumnSpan="3" Grid.Column="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="36,139,0,0" TextWrapping="Wrap" Text="Latitude" VerticalAlignment="Top" Height="25" Width="69" RenderTransformOrigin="-4.788,0.662" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="59,139,0,0" TextWrapping="Wrap" Text="Longitude" VerticalAlignment="Top" Height="25" Width="69" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="Latitude" VerticalAlignment="Top" Height="25" Width="69" RenderTransformOrigin="-4.788,0.662"/>
         <TextBlock HorizontalAlignment="Left" Margin="243,139,0,0" TextWrapping="Wrap" Text="Distance" VerticalAlignment="Top" Height="25" Width="69" Grid.Column="4"/>
 
-        <TextBox Name="tbSettingTextLat" Margin="88,129,29.429,255" RenderTransformOrigin="1.753,-2.849" TextChanged="TbSettingTextLat_TextChanged" Grid.Column="1">
+        <TextBox Name="tbSettingTextLat" Margin="73,125,0,101" RenderTransformOrigin="1.753,-2.849" TextChanged="TbSettingTextLat_TextChanged">
             5.727718
         </TextBox>
-        <TextBox Name="tbSettingTextLon" Margin="49,129,403,255" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" TextChanged="TbSettingTextLon_TextChanged">
+        <TextBox Name="tbSettingTextLon" Margin="49,129,403,97" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" TextChanged="TbSettingTextLon_TextChanged">
             45.185603
         </TextBox>
-        <TextBox Name="tbSettingTextDist" Margin="312,129,140,255" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" TextChanged="TbSettingTextDist_TextChanged">
+        <TextBox Name="tbSettingTextDist" Margin="312,129,140,97" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" TextChanged="TbSettingTextDist_TextChanged">
             500
         </TextBox>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DataContext="{Binding ElementName=lstItems, Path=SelectedItem}" Margin="10,169,251,56"  Grid.ColumnSpan="4" Grid.Column="1"  >
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DataContext="{Binding ElementName=lstItems, Path=SelectedItem}" Margin="0,169,251,10"  Grid.ColumnSpan="3" Grid.Column="2" Grid.RowSpan="2"  >
 
             <TextBlock  ScrollViewer.CanContentScroll="True" Name="listeArretBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="4" Height="Auto" Width="530" Grid.Column="1"/>
 
         </ScrollViewer>
+
+        
+            <ItemsControl  ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Arrets}" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="0,169,0,0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <TextBlock ScrollViewer.CanContentScroll="True" Text="{Binding Key }"></TextBlock>
+                            <ItemsControl ItemsSource="{Binding Value}" >
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+
+                                            <ItemsControl ItemsSource="{Binding lines}" >
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+
+                                                            <TextBlock Text="{Binding}"></TextBlock>
+
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        
     </Grid>
 </Window>

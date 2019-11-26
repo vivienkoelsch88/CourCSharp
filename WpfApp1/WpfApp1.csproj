@@ -63,7 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ArrayJsonViewModel.cs" />
+    <Compile Include="GreetingViewModel.cs" />
     <Compile Include="Greeting.xaml.cs">
       <DependentUpon>Greeting.xaml</DependentUpon>
       <SubType>Code</SubType>
