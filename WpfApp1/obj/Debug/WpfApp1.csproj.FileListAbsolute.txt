@@ -18,3 +18,16 @@ C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Newtonsoft.Js
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\obj\Debug\Greeting.g.cs
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\obj\Debug\Greeting.baml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Win32.UI.XamlHost.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Win32.UI.XamlHost.winmd
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.Controls.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Win32.UI.XamlHost.Managed.pdb
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Win32.UI.XamlHost.Managed.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.Controls.pdb
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.Controls.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.pdb
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Maps.MapControl.WPF.xml

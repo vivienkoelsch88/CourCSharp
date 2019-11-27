@@ -6,9 +6,12 @@
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        
+        >
 
-    <Grid>
+    <Grid Margin="10,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="261*"/>
             <RowDefinition Height="158*"/>
@@ -21,61 +24,72 @@
             <ColumnDefinition Width="19*"/>
             <ColumnDefinition Width="522*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Grid.Row="0" Padding="5" Background="#4E87D4" Grid.ColumnSpan="5" Margin="-10,129,0,97"/>
-        <Button x:Name="btn1" Grid.Column="4" Margin="0,42,39,91" Width="125" HorizontalAlignment="Right" Click="Btn1_Click_1" Grid.Row="1">Valider</Button>
-        <TextBlock HorizontalAlignment="Left" Margin="0,31,0,0" TextWrapping="Wrap" Text="Liste des Arrêt de Tram" VerticalAlignment="Top" Height="71" Width="213" Grid.Column="4"/>
-        <TextBlock HorizontalAlignment="Left" Margin="59,139,0,0" TextWrapping="Wrap" Text="Longitude" VerticalAlignment="Top" Height="25" Width="69" Grid.ColumnSpan="3" Grid.Column="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="Latitude" VerticalAlignment="Top" Height="25" Width="69" RenderTransformOrigin="-4.788,0.662"/>
-        <TextBlock HorizontalAlignment="Left" Margin="243,139,0,0" TextWrapping="Wrap" Text="Distance" VerticalAlignment="Top" Height="25" Width="69" Grid.Column="4"/>
+        <Border Grid.Column="0" Grid.Row="0" Padding="5" Background="#4E87D4" Grid.ColumnSpan="5" Margin="0,10,-10,216"/>
+        <Button x:Name="btn1" Grid.Column="4" Margin="0,16,39,220" Width="125" HorizontalAlignment="Right" Command="{Binding ClickCommand}">Valider</Button>
+        <TextBlock HorizontalAlignment="Left" Margin="38,20,0,0" TextWrapping="Wrap" Text="Longitude" VerticalAlignment="Top" Height="25" Width="69" Grid.ColumnSpan="3" Grid.Column="2"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Latitude" VerticalAlignment="Top" Height="25" Width="69" RenderTransformOrigin="-4.788,0.662"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,20,0,0" TextWrapping="Wrap" Text="Distance" VerticalAlignment="Top" Height="25" Width="69" Grid.Column="4"/>
 
-        <TextBox Name="tbSettingTextLat" Margin="73,125,0,101" RenderTransformOrigin="1.753,-2.849" TextChanged="TbSettingTextLat_TextChanged">
-            5.727718
+        <TextBox Name="tbSettingTextLat" Margin="73,10,0,216" RenderTransformOrigin="1.753,-2.849" Text="{Binding Path=Lat}">
+
         </TextBox>
-        <TextBox Name="tbSettingTextLon" Margin="49,129,403,97" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" TextChanged="TbSettingTextLon_TextChanged">
-            45.185603
+        <TextBox Name="tbSettingTextLon" Margin="28,10,424,216" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" Text="{Binding Lon}">
+
         </TextBox>
-        <TextBox Name="tbSettingTextDist" Margin="312,129,140,97" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" TextChanged="TbSettingTextDist_TextChanged">
-            500
+        <TextBox Name="tbSettingTextDist" Margin="237,10,215,216" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" Text="{Binding Dist}">
+
         </TextBox>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DataContext="{Binding ElementName=lstItems, Path=SelectedItem}" Margin="0,169,251,10"  Grid.ColumnSpan="3" Grid.Column="2" Grid.RowSpan="2"  >
 
             <TextBlock  ScrollViewer.CanContentScroll="True" Name="listeArretBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.ColumnSpan="4" Height="Auto" Width="530" Grid.Column="1"/>
 
         </ScrollViewer>
+        <ItemsControl  ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Arrets}" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="-10,159,10,10">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
 
-        
-            <ItemsControl  ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Arrets}" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="0,169,0,0">
-                <ItemsControl.ItemTemplate>
+                        <TextBlock ScrollViewer.CanContentScroll="True" Text="{Binding Key }"></TextBlock>
+                        <ItemsControl ItemsSource="{Binding Value}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+
+                                        <ItemsControl ItemsSource="{Binding lines}" >
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+
+                                                        <TextBlock Text="{Binding}"></TextBlock>
+
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <m:Map CredentialsProvider="rXUcOuI4Ja3lcyb3jBmQ~bvX8TlkE4f5RduRCnukDjg~Ai8eu4DQHvN47cJ2z57QzO8X8J5g123ZNcpiR3R14exL4BCvIwYA3s-5cZqwu5t-" Center="45.185603, 5.727718" x:Name="mapControl"  Margin="0,50,10,10" Grid.RowSpan="2" Grid.ColumnSpan="5" ZoomLevel="13" Mode="AerialWithLabels">
+            <m:MapItemsControl  ItemsSource="{Binding ListPoint}" >
+                <m:MapItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
 
-                            <TextBlock ScrollViewer.CanContentScroll="True" Text="{Binding Key }"></TextBlock>
-                            <ItemsControl ItemsSource="{Binding Value}" >
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
+                        <m:Pushpin Location="{Binding }"/>
 
-                                            <ItemsControl ItemsSource="{Binding lines}" >
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel>
-
-                                                            <TextBlock Text="{Binding}"></TextBlock>
-
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-
-                        </StackPanel>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        
+                </m:MapItemsControl.ItemTemplate>
+            </m:MapItemsControl>
+            <m:Pushpin Location="45.185603,5.727718">
+            </m:Pushpin>
+        </m:Map>
+
     </Grid>
 </Window>
