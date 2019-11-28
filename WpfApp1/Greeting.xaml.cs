@@ -35,8 +35,9 @@ namespace WpfApp1
 
         }
 
-     
+        private void Btn1_Click(object sender, RoutedEventArgs e)
+        {
 
-       
+        }
     }
 }

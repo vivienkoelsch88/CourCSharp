@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-        
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         >
 
     <Grid Margin="10,0,0,0">
@@ -25,12 +25,12 @@
             <ColumnDefinition Width="522*"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Grid.Row="0" Padding="5" Background="#4E87D4" Grid.ColumnSpan="5" Margin="0,10,-10,216"/>
-        <Button x:Name="btn1" Grid.Column="4" Margin="0,16,39,220" Width="125" HorizontalAlignment="Right" Command="{Binding ClickCommand}">Valider</Button>
+        <Button x:Name="btn1" Grid.Column="4" Margin="0,16,39,220" Width="125" HorizontalAlignment="Right" Command="{Binding ClickCommand}" Click="Btn1_Click">Valider</Button>
         <TextBlock HorizontalAlignment="Left" Margin="38,20,0,0" TextWrapping="Wrap" Text="Longitude" VerticalAlignment="Top" Height="25" Width="69" Grid.ColumnSpan="3" Grid.Column="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Latitude" VerticalAlignment="Top" Height="25" Width="69" RenderTransformOrigin="-4.788,0.662"/>
         <TextBlock HorizontalAlignment="Left" Margin="168,20,0,0" TextWrapping="Wrap" Text="Distance" VerticalAlignment="Top" Height="25" Width="69" Grid.Column="4"/>
 
-        <TextBox Name="tbSettingTextLat" Margin="73,10,0,216" RenderTransformOrigin="1.753,-2.849" Text="{Binding Path=Lat}">
+        <TextBox Name="tbSettingTextLat" Margin="79,10,10,216" RenderTransformOrigin="1.753,-2.849" Text="{Binding Path=Lat}">
 
         </TextBox>
         <TextBox Name="tbSettingTextLon" Margin="28,10,424,216" RenderTransformOrigin="1.753,-2.849" Grid.Column="4" Text="{Binding Lon}">
@@ -82,13 +82,32 @@
                 <m:MapItemsControl.ItemTemplate>
                     <DataTemplate>
 
-                        <m:Pushpin Location="{Binding }"/>
+                        <m:Pushpin  Location="{Binding [0]}">
+                            <m:Pushpin.InputBindings>
+
+                                <MouseBinding Gesture="LeftClick"
+                                              Command="{Binding DataContext.CachePushPinClicked,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                              CommandParameter="{Binding [1]}"
+                                              />
+                                
+                            </m:Pushpin.InputBindings>
+                        </m:Pushpin>
 
                     </DataTemplate>
                 </m:MapItemsControl.ItemTemplate>
             </m:MapItemsControl>
-            <m:Pushpin Location="45.185603,5.727718">
-            </m:Pushpin>
+
+            <m:MapItemsControl  ItemsSource="{Binding ListeDesLignesAffichees}" >
+                <m:MapItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <m:MapPolyline Stroke="Blue" 
+                                      
+                                       StrokeThickness="2" 
+                                       Locations="{Binding}" 
+                                       Opacity="0.9"/>
+                    </DataTemplate>
+                </m:MapItemsControl.ItemTemplate>
+            </m:MapItemsControl>
         </m:Map>
 
     </Grid>

@@ -1,4 +1,6 @@
-﻿using ConsoleApp2;
+﻿using ClassLibrary1.ClasseRetourApi;
+using ConsoleApp2;
+using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT;
 using Microsoft.Toolkit.Wpf.UI.Controls;
 using System;
@@ -12,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace WpfApp1
@@ -75,12 +78,21 @@ namespace WpfApp1
         {
             get
             {
-                return _clickCommand ?? (_clickCommand = new CommandHandler(() => MyAction(), () => CanExecute));
+                return _clickCommand ?? (_clickCommand = new CommandHandler(param => MyAction(param), () => CanExecute));
             }
         }
 
-        public List<String> listPoint;
-        public List<String> ListPoint
+        private ICommand cachePushPinClicked;
+        public ICommand CachePushPinClicked
+        {
+            get
+            {
+                return cachePushPinClicked ?? (cachePushPinClicked = new CommandHandler(param => afficherLigne(param), () => CanExecute));
+            }
+        }
+        
+        public List<List<String>> listPoint;
+        public List<List<String>> ListPoint
         {
             get { return listPoint; }
             set
@@ -93,7 +105,39 @@ namespace WpfApp1
             }
         }
 
-        private object MyAction()
+        public List<String> listeDesLignesAffichees;
+        public List<String> ListeDesLignesAffichees
+        {
+            get { return listeDesLignesAffichees; }
+            set
+            {
+                if (value != listeDesLignesAffichees)
+                {
+                    listeDesLignesAffichees = value;
+                    OnPropertyChanged("ListeDesLignesAffichees");
+                }
+            }
+        }
+
+        public String color;
+        public String Color
+        {
+            get { return color; }
+            set
+            {
+                if (value != color)
+                {
+                    color = value;
+                    OnPropertyChanged("Color");
+                }
+            }
+        }
+
+        /**
+         * 
+         * @param 
+         */
+        private object MyAction(object id)
         {
             this.remplirArrets(this.Lat, this.Lon, this.Dist);
             return null;
@@ -114,17 +158,16 @@ namespace WpfApp1
             this.lat = "5.727718";
             this.lon = "45.185603";
             this.dist = "500";
-            
-
-
+            this.Color = "#399645";
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         
         public void remplirArrets(String lat, String lon, String dist)
         {
             UtilApi api = new UtilApi(lat, lon);
             Dictionary<string, List<ArrayJson>> DictionnaireArrets = api.getListLigne(int.Parse(dist));
-            List<String> points = new List<string>();
+            List<List<String>> points = new List<List<string>>();
             
             Arrets = DictionnaireArrets;
 
@@ -132,12 +175,17 @@ namespace WpfApp1
             {
                 foreach (ArrayJson p in element.Value)
                 {
+                    List<String> l = new List<string>();
                     String po = p.lon + "";
                     String la = p.lat + "";
-                    points.Add(la.Replace(",",".") + "," + po.Replace(",","."));
+                    l.Add(la.Replace(",", ".") + "," + po.Replace(",", "."));
+                    l.Add(p.lines[0]);
+                    points.Add(l);
+                    
                 }
             }
             this.ListPoint = points;
+            
         }
 
         protected bool SetProperty(ref Dictionary<string, List<ArrayJson>> storage, Dictionary<string, List<ArrayJson>> value, [CallerMemberName] String propertyName = null)
@@ -170,6 +218,50 @@ namespace WpfApp1
             await (sender as MapControl).TrySetViewAsync(cityCenter, 12);
         }
 
+        public object afficherLigne(object parameter)
+        {     
+            UtilApi api = new UtilApi(this.Lat, this.Lon);
+            GeometryV listePointLigne = api.getTrajetLigne((string)parameter);
+            int compteur = 0;
+            string ar = "";
+            string ar2 = "";
+            List<string> listAffichageTrace = new List<string>();
+
+            foreach (List<double> point in listePointLigne.coordinates[0])
+            {
+                string pointUn = point[0] + "";
+                string pointZero = point[1] + "";
+
+                if (compteur == 1)
+                {
+                    ar = "";
+                    ar += pointZero.Replace(",", ".") + "," + pointUn.Replace(",", ".") + " ";
+                    ar2 += pointZero.Replace(",", ".") + "," + pointUn.Replace(",", ".");
+                    compteur = 2;
+                    listAffichageTrace.Add(ar2);
+                }
+                else if (compteur == 0) {
+                    ar = pointZero.Replace(",",".") + "," + pointUn.Replace(",", ".") + " ";
+                    
+                    compteur = 2;
+                }
+                else
+                {
+                    ar2 = "";
+                    ar += pointZero.Replace(",", ".") + "," + pointUn.Replace(",", ".");
+                    ar2 += pointZero.Replace(",", ".") + "," + pointUn.Replace(",", ".") + " ";
+                    listAffichageTrace.Add(ar);
+                    compteur = 1;
+                }
+                
+            }
+
+            ListeDesLignesAffichees = listAffichageTrace;
+
+
+
+            return null;
+        }
 
     }
 }

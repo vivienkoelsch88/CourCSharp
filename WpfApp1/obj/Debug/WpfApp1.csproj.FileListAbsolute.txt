@@ -31,3 +31,7 @@ C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Too
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Toolkit.Wpf.UI.XamlHost.xml
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
 C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Maps.MapControl.WPF.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\vivien.koelsch\source\repos\ConsoleApp2\WpfApp1\bin\Debug\System.Windows.Interactivity.xml

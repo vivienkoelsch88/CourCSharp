@@ -46,7 +46,11 @@
   <ItemGroup>
     <Compile Include="AppelsApi.cs" />
     <Compile Include="ClasseRetourApi\ArrayJson.cs" />
+    <Compile Include="ClasseRetourApi\Feature.cs" />
+    <Compile Include="ClasseRetourApi\GeometryV.cs" />
     <Compile Include="ClasseRetourApi\InfoArret.cs" />
+    <Compile Include="ClasseRetourApi\Properties.cs" />
+    <Compile Include="ClasseRetourApi\RootObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestApi\Interface\IAppelsApi.cs" />
     <Compile Include="RequestApi\UtilApi.cs" />

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using ClassLibrary1.ClasseRetourApi;
 
 namespace ConsoleApp2
 {
@@ -86,6 +87,14 @@ namespace ConsoleApp2
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public GeometryV getTrajetLigne(String idLigne)
+        {
+            RootObject liste = JsonConvert.DeserializeObject<RootObject>(this.appelsApi.getRequest("http://data.metromobilite.fr/api/lines/json?types=ligne&codes=" + idLigne));
+            GeometryV listeDef = liste.features[0].geometry;
+            
+            return listeDef;
         }
 
     }
